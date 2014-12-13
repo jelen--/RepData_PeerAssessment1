@@ -1,0 +1,132 @@
+---
+title: "Peer Assessment 1"
+output: html_document
+---
+## Load data
+
+Below are shown the dimensions of the dataset (1768 observations and 3 variables), the head of the dataset and the summary of each variable.
+
+```{r load data, echo = TRUE}
+unzip("activity.zip")
+activity <- read.csv("activity.csv")
+dim(activity)
+head(activity)
+summary(activity)
+```
+
+
+## Clean data
+
+Data is cleaned by removing the rows with "Not Available" items. Below are the new dimensions, head and summary of the data.
+
+```{r clean data}
+complete_activity <- complete.cases(activity)
+clean_activity <- activity[complete_activity, ]
+dim(clean_activity)
+head(clean_activity)
+summary(clean_activity)
+```
+
+
+## What is the mean total number of steps taken per day?
+
+The average number of steps taken per day is calculated with the function "tapply" and the "Not Available" rows are cleaned. Below is shown the head of the total number of steps taken per day, extracted from the cleaned data.
+
+```{r daily steps}
+daysteps <- tapply(clean_activity$steps, clean_activity$date, sum)
+goodsteps <- complete.cases(daysteps)
+clean_daysteps <- daysteps[goodsteps]
+head(clean_daysteps)
+```
+
+```{r steps histogram}
+hist(clean_daysteps, main = "Histogram of total number of steps taken per day", xlab = "Total number of steps")
+```
+
+```{r mean and median}
+mean_daysteps <- mean(clean_daysteps)
+median_daysteps <- median(clean_daysteps)
+```
+
+The mean total number of steps taken per day is `median_daysteps`, and the median is `median_daysteps`.
+
+
+## What is the average daily activity pattern?
+
+The mean steps taken in each 5-minute interval is calculated with the "tapply" function. Below is shown the head of the mean steps taken in each interval, averaged across all days.
+
+```{r mean steps}
+intervalsteps <- tapply(clean_activity$steps, clean_activity$interval, mean)
+head(intervalsteps)
+```
+
+```{r interval plot}
+plot(rownames(intervalsteps), intervalsteps, type = "l", xlab = "5-minute interval", ylab = "Average number of steps", main = "Time series plot of the 5-minute interval and the average number of steps")
+```
+
+```{r maximum steps}
+maxsteps <- intervalsteps[intervalsteps == max(intervalsteps)]
+ms <- names(maxsteps)
+```
+
+The 5-minute interval with the maximum number of steps is `ms`, which contains a mean of `maxsteps` steps.
+
+
+## Imputing missing values
+
+```{r missing values}
+NAsteps <- is.na(activity$steps)
+mv <- length(which(NAsteps == TRUE))
+```
+
+The total number of missing values is `mv`.
+
+The NA values are filled in with the mean number of steps of each interval, averaged across all days. The dimensions of the filled in activity, "fiactivity", are compared to the dimensions of the activity (they must be the same). The summary of the NA values of the "fiactivity" is also checked, since the number of NAs (TRUEs) should be 0.
+
+```{r NA filled in}
+ind <- which(NAsteps)
+fiactivity <- activity
+
+fiactivity$steps[ind] = intervalsteps
+dim(fiactivity) == dim(activity)
+summary(is.na(fiactivity[, 1]))
+```
+
+```{r hist mean median}
+fi_daysteps <- tapply(fiactivity$steps, fiactivity$date, sum)
+head(fi_daysteps)
+fi_daysteps_mean <- mean(fi_daysteps)
+fi_daysteps_median <- median(fi_daysteps)
+hist(fi_daysteps, main = "Histogram of total number of steps in filled in data", xlab = "Mean number of steps")
+```
+
+Above are shown the head of the new dataset and the histogram of the total number of steps taken per day. The new mean of steps per day is `fi_daysteps_mean`, and the new median is `fi_daysteps_median`. The histogram is now more centered, and the new median corresponds with the mean.
+
+
+## Are there differences in activity patterns between weekdays and weekends?
+
+In this part of the analysis, the dataset used is the filled in dataset, "fiactivity".
+
+A new dataset with a column named "day" is created with the constant "Weekday". The day of the week is checked in the date column and a list with this variable is created, "wkday". Then, the index number of the "wkday" list corresponding to saturday or sunday is used in order to replace the "Weekday" value by "Weekend" in the day column of the fiactivity dataset.
+
+* The conditional list is done with "sábado" or "domingo" because I have an Spanish R Package, that is the same as "saturday" and "sunday". 
+
+```{r week}
+fiactivity$day <- "Weekday"
+wkday <- weekdays(as.Date(fiactivity$date))
+indwk <- which(wkday[] == "sábado" | wkday[] == "domingo")
+fiactivity$day[indwk] = "Weekend"
+```
+
+The mean number of steps is calculated in each interval among weekdays or weekends.
+
+```{r panel plot}
+wkdaysteps <- tapply(fiactivity[fiactivity$day=="Weekday",]$steps, fiactivity[fiactivity$day=="Weekday",]$interval, mean)
+wkendsteps <- tapply(fiactivity[fiactivity$day=="Weekend",]$steps, fiactivity[fiactivity$day=="Weekend",]$interval, mean)
+```
+
+```{r panel plot}
+par(mfrow=c(2,1))
+plot(rownames(wkdaysteps), wkdaysteps, type="l", ylab="Mean steps", xlab="Interval", main="Weekday")
+plot(rownames(wkendsteps), wkendsteps, type="l", ylab="Mean steps", xlab="Interval", main="Weekend")
+```
