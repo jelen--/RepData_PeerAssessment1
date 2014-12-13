@@ -8,7 +8,7 @@ Below are shown the dimensions of the dataset (1768 observations and 3 variables
 
 
 ```r
-activity <- read.csv("C:/Users/Elena/Desktop/uni/cursos/Reproducible research-JHU/wk2/activity.csv")
+activity <- read.csv("C:/Users/Elena/Desktop/uni/cursos/Reproducible research-JHU/wk2/peer assessment/activity.csv")
 dim(activity)
 ```
 
@@ -121,7 +121,7 @@ mean_daysteps <- mean(clean_daysteps)
 median_daysteps <- median(clean_daysteps)
 ```
 
-The mean total number of steps taken per day is `median_daysteps`, and the median is `median_daysteps`.
+The mean total number of steps taken per day is 10765, and the median is 10765.
 
 
 ## What is the average daily activity pattern?
@@ -152,7 +152,7 @@ maxsteps <- intervalsteps[intervalsteps == max(intervalsteps)]
 ms <- names(maxsteps)
 ```
 
-The 5-minute interval with the maximum number of steps is `ms`, which contains a mean of `maxsteps` steps.
+The 5-minute interval with the maximum number of steps is 835, which contains a mean of 206.1698 steps.
 
 
 ## Imputing missing values
@@ -163,7 +163,7 @@ NAsteps <- is.na(activity$steps)
 mv <- length(which(NAsteps == TRUE))
 ```
 
-The total number of missing values is `mv`.
+The total number of missing values is 2304.
 
 The NA values are filled in with the mean number of steps of each interval, averaged across all days. The dimensions of the filled in activity, "fiactivity", are compared to the dimensions of the activity (they must be the same). The summary of the NA values of the "fiactivity" is also checked, since the number of NAs (TRUEs) should be 0.
 
@@ -208,7 +208,7 @@ hist(fi_daysteps, main = "Histogram of total number of steps in filled in data",
 
 ![plot of chunk hist mean median](figure/hist mean median.png) 
 
-Above are shown the head of the new dataset and the histogram of the total number of steps taken per day. The new mean of steps per day is `fi_daysteps_mean`, and the new median is `fi_daysteps_median`. The histogram is now more centered, and the new median corresponds with the mean.
+Above are shown the head of the new dataset and the histogram of the total number of steps taken per day. The new mean of steps per day is 1.0766 &times; 10<sup>4</sup>, and the new median is 1.0766 &times; 10<sup>4</sup>. The histogram is now more centered, and the new median corresponds with the mean.
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
