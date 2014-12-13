@@ -205,7 +205,7 @@ hr {
 
 <p>Below are shown the dimensions of the dataset (1768 observations and 3 variables), the head of the dataset and the summary of each variable.</p>
 
-<pre><code class="r">activity &lt;- read.csv(&quot;C:/Users/Elena/Desktop/uni/cursos/Reproducible research-JHU/wk2/activity.csv&quot;)
+<pre><code class="r">activity &lt;- read.csv(&quot;C:/Users/Elena/Desktop/uni/cursos/Reproducible research-JHU/wk2/peer assessment/activity.csv&quot;)
 dim(activity)
 </code></pre>
 
@@ -297,7 +297,7 @@ head(clean_daysteps)
 median_daysteps &lt;- median(clean_daysteps)
 </code></pre>
 
-<p>The mean total number of steps taken per day is <code>median_daysteps</code>, and the median is <code>median_daysteps</code>.</p>
+<p>The mean total number of steps taken per day is 10765, and the median is 10765.</p>
 
 <h2>What is the average daily activity pattern?</h2>
 
@@ -320,7 +320,7 @@ head(intervalsteps)
 ms &lt;- names(maxsteps)
 </code></pre>
 
-<p>The 5-minute interval with the maximum number of steps is <code>ms</code>, which contains a mean of <code>maxsteps</code> steps.</p>
+<p>The 5-minute interval with the maximum number of steps is 835, which contains a mean of 206.1698 steps.</p>
 
 <h2>Imputing missing values</h2>
 
@@ -328,7 +328,7 @@ ms &lt;- names(maxsteps)
 mv &lt;- length(which(NAsteps == TRUE))
 </code></pre>
 
-<p>The total number of missing values is <code>mv</code>.</p>
+<p>The total number of missing values is 2304.</p>
 
 <p>The NA values are filled in with the mean number of steps of each interval, averaged across all days. The dimensions of the filled in activity, &ldquo;fiactivity&rdquo;, are compared to the dimensions of the activity (they must be the same). The summary of the NA values of the &ldquo;fiactivity&rdquo; is also checked, since the number of NAs (TRUEs) should be 0.</p>
 
@@ -364,7 +364,7 @@ hist(fi_daysteps, main = &quot;Histogram of total number of steps in filled in d
 
 <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAMAAACR9g9NAAAAqFBMVEX9/v0AAAAAADkAAGUAOTkAOWUAOY8AZo8AZrU5AAA5ADk5AGU5OWU5OY85Zo85ZrU5j485j9plAABlADllAGVlOQBlOTllZjllZmVlZrVltbVltf2POQCPOTmPOWWPZgCPZo+PjzmPj2WPtY+P27WP29qP2/21ZgC1Zjm1tWW124+1/rW1/tq1/v3ajznaj2Xa/rXa/tra/v39tWX924/9/rX9/tr9/v0P1tzRAAAAOHRSTlP/////////////////////////////////////////////////////////////////////////ADtcEcoAAAAJcEhZcwAACxIAAAsSAdLdfvwAABCKSURBVHic7Z3/g6LGHYbDbnrdzXV70UuaNJpLm/bWJK02WVH+//+szPBFWMcVEH2Bz/P8cK7ivAzzOAx4MnyRgEm+UFcANCDeKIg3CuKNgnijIN4oiDcK4o2CeKMg3iiINwrijYJ4oyDeKIg3CuKNgnijIN4oiDcK4o2CeKMg3iiINwrijYJ4o1xT/G5+v06S/fJ+nf1VsFpcEBo/RnfPgZjKs/raTuHq1WZ1gRWFOV69C/n3PGuG46W7+buXcLnq0oYrb8xtxNdeXkWX1L4sXY+pPutT/FFlu9S+KPO2+DC1pZc1XY0b9vj0cx/dr/fLKIoekmSTPswStzi6/0+6cfvl3Xdp59qmL6ddbBv9OX19nb6p2NLs/b60a4l6TP4sL1y0bbrmX90qM8euBaux2VLfqi5k4d7vqxBaXRKo/aKyhnxxudmHBXlV3/1e6/F5eb/sh0qPr5arLM02rL6VF3I78bt55Brgj6z2K/ckffQb8+WjE581j3/TyzYqyBshf/9r8dWXH/I1vBzElyspxR9i86VpWBZS0/x6dUmo9rOkzChWXWx2ueokKP6ofKjcUfofta28UM51xReN7LYpfswr6/ZX8aPvmXfP8WPaDpvIi38oit2vt5ErEC3cW9xr5fvru/rjl6t70zRylvYPl12KP8T6pVkV0oq5txyqcJz7qvaHEi4jWpSLk1JgtuqyzK4ivixfbn2w3NHS2lZeKOd24v0zV19X+61v4k208H/ssl39c1HIiX/IGyJ7tXx/Xfzrl7PCB/FeX038ITYb41euCh73SrEHPV7dq9qXJbL99qxcnCSHepfD82vxZfly64PlKkuzDatt5YVybjzGR3knOiXev6cUf/g4NBJfFK6M8euQ+Cy2nfhXtX8tvlyclGP1upv4SrlyabFhta28UM6NT+dWpaPjXb1rtqwNj8U32tUXhQPi/dLX4qu7+uz9hfjA6uq1L0vku/pycdJEfFk+sKuvlCuXFhtW28oL5dxOfOVjGz64c62+jcI9vnx/VXwlxj8rCh+Jz992JL52cFdZWWB1odrnR6Tuj2o3PC/+uHywXLm02LDaVl4o58a7+nx3nm5YcTqX9pfidM61erpps3wEqIkv31/d91Zi/LO88LF4Nyr+cLyrL07nVlnjV8QHV1epfVmiyCgWJ43EF+W9269P7eoPS/MNq23lhXIG8ZXt9vKzEw3NvgQaJGrx+ZH/TFyNjiC+O9vDFxbjA/EwNhBvFMQbBfFGQbxREG8UxBsF8UZBvFEQbxTEGwXxRkG8URBvFMQbBfFGQbxREG8UxBsF8UZBvFEQbxTEGwXxRkG8URBvFMQbBfFGQbxREG8UxBsF8UZBvFEsiI96Rb01PWFC/GDDhCBeGSYE8cowIWfF775Z+znJRjoTnQPxAZqId+6T+MMtqnMVEB+gifj46SXr+SMF8QHOi5/fff7kevzTaPf1iA/Q4ODO37hhO9opHBEfhKN6ZZiQLuLH9iUW4gOcFx8/RrNVcGb8sbQB4gOcFb9fLpKVu83A8cHdWNoA8QEafYGznQVP58bSBogP0KjHO+jxVwgTcn6M382d+Q1j/BXChFxyOjeWNkB8AMQrw4QgXhkmBPHKMCGIV4YJQbwyTAjilWFCEK8ME4J4ZZgQxCvDhCBeGSYE8cowIYhXhglBvDJMCOKVYUIQrwwTgnhlmBDEK8OEIF4ZJgTxyjAhiFeGCUG8MkwI4pVhQhCvDBOCeGWYEMQrw4QgXhkmBPHKMCGIV4YJQbwyTAjilWFCEK8ME4J4ZZgQxCvDhCBeGSYE8cowIY0mOHQw+dEVwoQ0nu5se3yngrG0AeIDNJrgsPpYYSxtgPgA9HhlmJAmExwyxl8rTAhH9cowIcxXrwwTwnz1yjAhzFevDBPCfPXKMCHMV68ME8J89cowIZzOKcOEIF4ZJgTxyjAhiFeGCUG8MkwI4pVhQhCvDBOCeGWYEMQrw4QgXhkmBPHKMCGIV4YJQbwyTAjilWFCEK8ME4J4ZZgQxCvDhCBeGSYE8cowIYhXhglBvDJMCOKVYUIQrwwTgnhlmBDEK8OEIF4ZJgTxyjAhiFeGCUG8MkwI4pVhQhCvDBOCeGWYEMQrw4QgXhkmBPHKMCGNZr1ys5oeT2U7mjZAfIAm4v1MZ/GHo0VjaQPEB2gi3s90xjx3VwgTcl78/O7zpzXz3F0lTEiDg7v9MnpItsxzd4UwIRzVK8OEMG25MkxIo2nL7545uLtKmJBGkxjvlzPEXyNMSMO7UK0eEH+FMCFNpy3ffPke8b2HCWkybfnMPQTmLR9LGyA+AKdzyjAhiFeGCUG8MkwI4pVhQhCvDBOCeGWYEMQrw4QgXhkmBPHKMCGIV4YJQbwyTAjilWFCEK8ME4J4ZZgQxCvDhCBeGSYE8cowIYhXhglBvDJMCOKVYUIQrwwTgnhlmBDEK8OEIF4ZJgTxyjAhiFeGCUG8MkwI4pVhQhCvDBOCeGWYEMQrw4QgXhkmBPHKMCGZ+N38oUPZsbQB4gMUPX4b+UnNWjGWNkB8gMqufr+MokWbsmNpA8QHKMRn0xgG5jRzSxzMZXuFMCHFGB+4D0FGPt1Zsj1+x1jaAPEBGk5wyJSmVwkTkovfpqP7Jnh0R4+/YpiQfFf/0TmPjyevdMvmjPHXChOSic+6daBTv8lY2gDxAfJdve/WgU4dhPnqJwDz1SvDhDBfvTJMSHlUf+IAjvnqrxkmpPgC5+R3tcxXf8UwIbn4wFe1BcxXf70wIfmufjXrUHYsbYD4AMWu/uQY/wZjaQPEB+AXOMowIYhXhgnJxe+X0bvfP7b8Cc5Y2gDxAYrv6mfx0wvf1d86TEh5OpeKf+ukLsRY2gDxAao9fkOPv3GYkMMYH0UtvY+mDRAfgKN6ZZgQxCvDhPDNnTJMSLXHb1p+YT+WNkB8gKp4TuduHSakKn7Lrv7GYUJqY3yrK+fG0waID8BRvTJMCOKVYUJqu/qWJ3RjaQPEB8h7/Oah+KcFY2kDxAeo/tiS07lbhwkp/3cuocffPkxI9X/n2k6ANJY2QHwAjuqVYUIQrwwTwo8tlWFC+LGlMkwIP7ZUhgnhx5bKMCH82FIZJoSjemWYkPPXx59mLG2A+AD5GP9j25mrHWNpA8QH4Fe2yjAhjPHKMCGIV4YJceLfPLRzC91IEDjXG0sbID5AIT5+OnESny70H4z4w9GisbQB4gM0Ee+XMcHhFcKEnBc/v/v8yfX44zeMpQ0QH8CLf/s3tvtl9BC8ymYsbYD4ABzVK8OEdBHPfPUTgB6vDBOCeGWYkPO3Hzt95DeWNkB8gPM9PrvYIsRY2gDxARrs6nenfn07ljZAfADGeGWYEMQrw4QgXhkmBPHKMCGIV4YJQbwyTAjilWFCEK8ME4J4ZZgQxCvDhCBeGSYE8cowIYhXhglBvDJMCOKVYUIQrwwTgnhlmBDEK8OEIF4ZJgTxyjAhiFeGCUG8MkwI4pVhQoYqPuqTXivWZ5iQwYofaBbiE8SPGsQrw4QgXhkmBPHKMCGIV4YJQbwyTAjilWFCEK8ME4J4ZZgQxCvDhCBeGSbkvPj48dQ8t4gfMWfF75cL/xi4/yjiR8z5CQ7zeepvPF894q8MPV4ZJuT8GH/61mSIHzEc1SvDhAx1vnrEXxl6vDJMCOKVYUKGOl894q/MUOerR/yVGep89Yi/MozxyjAhiFeGCUG8MkwI4pVhQhCvDBOCeGWYEMQrw4QgXhkmBPHKMCGIV4YJQbwyTAjilWFCEK8ME4J4ZZgQxCvDhCBeGSYE8cowIYhXhglBvDJMCOKVYUIQrwwTgnhlmBDEK8OEIF4ZJgTxyjAhiFeGCUG8MkwI4pVhQhCvDBOCeGWYEMQrw4QgXhkmBPFtwwZ7K8R2IH4yYe1A/GTC2oH4yYS1A/GTCWsH4icT1g7ETyasHYifTFg7Gt2hwk1renyfAsQPK6wdTcT7u5LEH44WIX5QYe1oIj5+eqndk+bE906D/U5ruK4GLX5+9/mT6/FP5+5JM9gmGWzFBi3eTV8dPSTb8/ekGWyTDLZiAxd/EsQPKqwdiJ9MWDsQP5mwdiB+MmHtQPxkwtqB+MmEtQPxkwlrB+InE9YOxE8mrB2In0xYOxA/mbB2IH4yYe1A/GTC2oH4yYS1A/GTCWsH4icT1g7ETyasHYifTFg7ED+ZsHYgfjJh7UD8ZMLagfjJhLUD8ZMJawfiJxPWDsRPJqwdiJeG6S43RLzRMMQbDUO80TDEGw1DvNEwxBsNQ7zRMMQbDUO80TDEGw1DvNEwxBsNQ7zRMMQbDUO80TDEGw07Lz5+9P/Lz5Sm0wo7K36/XPjH7fGE9YgfcVijGxVUH5PkNtOWQ2v6Ff9Gj4cRc36Md/cliYJjPIyYS47qYcQg3iiINwrijYJ4oyDeKIg3CuKNgnijIN4oiDdKj+LF/zcFMvH9RfH/8VcPQ7zRMMQbDUO80TDEGw1DvNEwxBsN4wscoyDeKIg3CuKNgnijIN4oiDcK4o2CeKMg3ih9id/No0uvo95E/prcPKn+0I74/fp1QPc4H9ZP3dzkIou+apaHda1ZT+LdVfSbh8syVotKUv2hHVvXEsGcDnE+rJ+67T4+J/FXz/3ULA/rXLOexLv5MnzX6M7+x+dKUv2hVdDq7l9piWBO+7gsrJ+6bZ2L1aKfmuVhnWvWk/j46cV/Bi/AT8CwKJLqD21rk250MKdLnAvrr26nqtQ1rHPNehLvJkq5ULzbb6Wf3zyp/tA2KnUVzOkS5z9FfdVtv5z1VzMX1rlmw+nxntVikD2+r7rt5rOkt5r5sM41G84Y7zkxArZMifsb42viLw2LH92RWE81y8I616y3o/rZpUf1bv+0/7TOk+oPLXEbHczpEleMG5fXLVfVT83ysM41G9Z5/N1zDyfeVzqPv7xuG3+9y6KfmhVhXWvGN3dGQbxREG8UxBsF8UZBvFEQbxTEGwXxRkG8URBvFMQbBfFGQbxREG8UxBsF8UZBvFEQbxTEG2VS4uNHf11Rl7uhrhYnF+2X0ax80sdvyAfBtMR/9deXZPe3Lm7eEF9zjfghEr//7jmJv88udnP9PruUOH76yV9RnBR/+Stt3q/3P/4cRbNt5Dr06vviCua0XPyXb/1ewz9L/3G/X062UfYk/yfZffNPv2A7zhsuT0z8r4vkf+7y1pW/osBfSvx+HT/O8rug538V4pcPfnRwT1fZq1m54iKVVfnu7PqXTf7eLHz+7mV7v85fHx0TE//bh/2n396vnXFnJPHCcs9JUnT1ssf7Cw7958Pt6leLvFy+P3cJ7kq0THx2LVpchu/mC1e6jysGFUxM/H//8fvfnRt38bDbD6/cfriJ+F+evfisXC4+zq6ML549usRDuDeefl6y10fHxMSvf/l5ll81mLgxelHxnJzp8fvlIi8X6vGObL9fhH98LiZM2F569ZiAqYnfZv31MDrHXz0fiXfONvd18eXwXY7q9THeyd2WBwLpX7v5g3vIX5dudxemJj7vz/mh+CaK/vTt4ki8e/3rb+rivy+uPcz25z4vP8bPnvlRI90tFMf5u4/fHUYT5VZ3Y1Lib8pYj+pyEN8VxMMYQbxREG8UxBsF8UZBvFEQbxTEGwXxRkG8URBvFMQbBfFGQbxREG8UxBvl/3/dFT9q7IqXAAAAAElFTkSuQmCC" alt="plot of chunk hist mean median"/> </p>
 
-<p>Above are shown the head of the new dataset and the histogram of the total number of steps taken per day. The new mean of steps per day is <code>fi_daysteps_mean</code>, and the new median is <code>fi_daysteps_median</code>. The histogram is now more centered, and the new median corresponds with the mean.</p>
+<p>Above are shown the head of the new dataset and the histogram of the total number of steps taken per day. The new mean of steps per day is 1.0766 &times; 10<sup>4</sup>, and the new median is 1.0766 &times; 10<sup>4</sup>. The histogram is now more centered, and the new median corresponds with the mean.</p>
 
 <h2>Are there differences in activity patterns between weekdays and weekends?</h2>
 
